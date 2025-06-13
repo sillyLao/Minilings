@@ -33,7 +33,7 @@ shadow_enabled = true
 
 [node name="Planète" type="CSGSphere3D" parent="."]
 transform = Transform3D(-0.999678, 0, 0.0253919, 0, 1, 0, -0.0253919, 0, -0.999678, 0, 0, 0)
-radius = 2.0
+radius = 4.0
 radial_segments = 40
 rings = 40
 material = SubResource("StandardMaterial3D_e2o6t")
