@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://pr0pn3ayhfhb"]
+
+[ext_resource type="Script" uid="uid://bt0hwx7bq6ab8" path="res://scripts/game.gd" id="1_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://btapksyly6pem" path="res://assets/Mercator-projection.jpg" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://b5sykql048wnj" path="res://scenes/gaia.tscn" id="2_lnu2h"]
+[ext_resource type="Script" uid="uid://dssyog843uy5c" path="res://scripts/camera_3d.gd" id="3_lnu2h"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yqjtg"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_lnu2h"]
+sky_material = SubResource("ProceduralSkyMaterial_yqjtg")
+
+[sub_resource type="Environment" id="Environment_lbhrr"]
+background_mode = 2
+sky = SubResource("Sky_lnu2h")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e2o6t"]
+albedo_texture = ExtResource("1_yqjtg")
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_lbhrr")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_lbhrr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0.489838, -0.634444, 0.597946, -0.100309, 0.640295, 0.761551, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Planète" type="CSGSphere3D" parent="."]
+transform = Transform3D(-0.999678, 0, 0.0253919, 0, 1, 0, -0.0253919, 0, -0.999678, 0, 0, 0)
+radius = 2.0
+radial_segments = 40
+rings = 40
+material = SubResource("StandardMaterial3D_e2o6t")
+
+[node name="gaia" parent="." instance=ExtResource("2_lnu2h")]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 0, 0)
+
+[node name="CameraPivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.211555, -0.235447, 4.50789)
+script = ExtResource("3_lnu2h")
+
+[node name="Debug" type="RichTextLabel" parent="."]
+offset_right = 1128.0
+offset_bottom = 536.0
+bbcode_enabled = true
+text = "[b]r         : [/b]
+[b]theta : [/b]
+[b]phi     : [/b]"

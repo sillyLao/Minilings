@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5sykql048wnj"]
+
+[ext_resource type="Script" uid="uid://dpl7bvaryr72m" path="res://scripts/gaia.gd" id="1_6tpek"]
+[ext_resource type="Texture2D" uid="uid://cyy705txl7dof" path="res://assets/gaia_idle.png" id="1_tvtma"]
+[ext_resource type="Script" uid="uid://bgm5ndkfxjipm" path="res://scripts/ia.gd" id="3_vcow4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tpek"]
+atlas = ExtResource("1_tvtma")
+region = Rect2(0, 0, 700, 902)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vcow4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tpek")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="gaia" type="CharacterBody3D"]
+script = ExtResource("1_6tpek")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vcow4")
+
+[node name="IA" type="Node" parent="."]
+script = ExtResource("3_vcow4")
