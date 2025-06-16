@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b5sykql048wnj"]
+[gd_scene load_steps=8 format=3 uid="uid://b5sykql048wnj"]
 
 [ext_resource type="Script" uid="uid://dpl7bvaryr72m" path="res://scripts/gaia.gd" id="1_6tpek"]
 [ext_resource type="Texture2D" uid="uid://cyy705txl7dof" path="res://assets/gaia_idle.png" id="1_tvtma"]
 [ext_resource type="Script" uid="uid://bgm5ndkfxjipm" path="res://scripts/ia.gd" id="3_vcow4"]
 [ext_resource type="Script" uid="uid://c2cuj34uwujk0" path="res://scripts/wander.gd" id="4_tlcuw"]
+[ext_resource type="Texture2D" uid="uid://c1yunoorcpa1u" path="res://icon.svg" id="4_watpk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6tpek"]
 atlas = ExtResource("1_tvtma")
@@ -31,6 +32,15 @@ script = ExtResource("3_vcow4")
 
 [node name="Timer" type="Timer" parent="IA"]
 one_shot = true
+
+[node name="RayCast3D" type="RayCast3D" parent="IA"]
+
+[node name="Sprite3D" type="Sprite3D" parent="IA/RayCast3D"]
+transform = Transform3D(0.135, 0, 0, 0, 0.135, 0, 0, 0, 0.135, 0, 0, 0)
+billboard = 1
+shaded = true
+no_depth_test = true
+texture = ExtResource("4_watpk")
 
 [node name="Wander" type="Node" parent="IA"]
 script = ExtResource("4_tlcuw")

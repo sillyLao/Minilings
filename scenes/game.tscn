@@ -38,6 +38,13 @@ radial_segments = 40
 rings = 40
 material = SubResource("StandardMaterial3D_e2o6t")
 
+[node name="Collisions" type="StaticBody3D" parent="Planète"]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Planète/Collisions"]
+transform = Transform3D(0.81532, 0, -0.579011, 0, 1, 0, 0.579011, 0, 0.81532, 7.7037, 1.23516, -12.3896)
+depth = 25.455
+polygon = PackedVector2Array(-0.0308684, 2.01396, -0.479361, 1.55347, -0.82954, 1.10301, -0.933524, -0.164417, -0.47478, -0.858239, -0.53239, -1.59956, -1.2786, -1.96922, -2.15517, -1.60426, -2.09931, -3.1518, 0.357905, -5.00589, 2.68516, -4.66014, 1.71314, -3.98919, 1.16451, -3.04874, 2.7313, -2.37453, 3.65453, -1.52096, 3.9028, -0.727282, 3.77084, 0.31521, 2.37844, 0.924751, 2.09981, 1.96119, 1.54582, 1.78803, 0.64266, 2.17229, 0.35644, 1.95378)
+
 [node name="gaia" parent="." instance=ExtResource("2_lnu2h")]
 transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 0, 0)
 
@@ -54,3 +61,5 @@ bbcode_enabled = true
 text = "[b]r         : [/b]
 [b]theta : [/b]
 [b]phi     : [/b]"
+
+[editable path="gaia"]

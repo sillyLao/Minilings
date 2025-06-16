@@ -3,8 +3,8 @@ extends CharacterBody3D
 @onready var planet : CSGSphere3D = $"../Planète"
 
 var r : float
-var theta : float = PI/2
-var phi : float = 0
+var theta : float = PI/3
+var phi : float = PI/4
 var PT : Vector2
 
 func _ready():
@@ -28,4 +28,5 @@ func _physics_process(_delta):
 	var dir = planet.position.direction_to(position)
 	rotation = Vector3(theta+PI/2, phi, float(theta-PI < 0)*PI)
 	PT = Vector2(phi, theta)
+	move_and_slide()
 	
