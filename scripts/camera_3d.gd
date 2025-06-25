@@ -11,10 +11,10 @@ func _ready() -> void:
 	position.z = planet.radius*2
 	position_aim = position
 
-func _process(_delta):
+func _process(delta):
 	#rotation.x = clamp(rotation.x, -1, 1)
 	position_aim.z = clamp(position_aim.z, planet.radius*1.05, planet.radius*2.5)
-	position.z = lerp(position.z, position_aim.z, 0.08)
+	position.z = lerp(position.z, position_aim.z, 0.08*delta*60)
 
 func _input(event):
 	if event is InputEventMouse:

@@ -34,8 +34,8 @@ shadow_enabled = true
 [node name="Planète" type="CSGSphere3D" parent="."]
 transform = Transform3D(-0.999678, 0, 0.0253919, 0, 1, 0, -0.0253919, 0, -0.999678, 0, 0, 0)
 radius = 4.0
-radial_segments = 40
-rings = 40
+radial_segments = 80
+rings = 80
 material = SubResource("StandardMaterial3D_e2o6t")
 
 [node name="Collisions" type="StaticBody3D" parent="Planète"]
@@ -43,12 +43,12 @@ material = SubResource("StandardMaterial3D_e2o6t")
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Planète/Collisions"]
 transform = Transform3D(0.81532, 0, -0.579011, 0, 1, 0, 0.579011, 0, 0.81532, 7.7037, 1.23516, -12.3896)
 depth = 25.455
-polygon = PackedVector2Array(-0.0308684, 2.01396, -0.479361, 1.55347, -0.82954, 1.10301, -0.933524, -0.164417, -0.47478, -0.858239, -0.53239, -1.59956, -1.2786, -1.96922, -2.15517, -1.60426, -2.09931, -3.1518, 0.357905, -5.00589, 2.68516, -4.66014, 1.71314, -3.98919, 1.16451, -3.04874, 2.7313, -2.37453, 3.65453, -1.52096, 3.9028, -0.727282, 3.77084, 0.31521, 2.37844, 0.924751, 2.09981, 1.96119, 1.54582, 1.78803, 0.64266, 2.17229, 0.35644, 1.95378)
+polygon = PackedVector2Array(-0.0308684, 2.01396, -0.349819, 1.37634, -0.629719, 1.04448, -0.753966, 0.177502, -0.377105, -0.184114, -0.403605, -0.759945, -1.03531, -1.11158, -1.90828, -1.1506, -2.07685, -2.84797, 0.357905, -5.00589, 2.36345, -3.95312, 2.37561, -3.19748, 1.24767, -2.27962, 0.793263, -1.48594, 2.85643, -0.652071, 3.83452, -0.487343, 3.51837, 0.034968, 1.89253, 1.03947, 1.96953, 1.91759, 1.31593, 1.75279, 0.64266, 2.17229, 0.35644, 1.95378)
 
 [node name="gaia" parent="." instance=ExtResource("2_lnu2h")]
-transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 0, 0)
 
 [node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(0.724028, 0, 0.689771, 0, 1, 0, -0.689771, 0, 0.724028, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.211555, -0.235447, 4.50789)

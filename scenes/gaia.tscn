@@ -1,31 +1,36 @@
 [gd_scene load_steps=8 format=3 uid="uid://b5sykql048wnj"]
 
-[ext_resource type="Script" uid="uid://dpl7bvaryr72m" path="res://scripts/gaia.gd" id="1_6tpek"]
-[ext_resource type="Texture2D" uid="uid://cyy705txl7dof" path="res://assets/gaia_idle.png" id="1_tvtma"]
+[ext_resource type="Script" uid="uid://dpl7bvaryr72m" path="res://scripts/miniling1.gd" id="1_6tpek"]
+[ext_resource type="Texture2D" uid="uid://dv65cvwqi7qxv" path="res://assets/miniling1_low.png" id="2_watpk"]
 [ext_resource type="Script" uid="uid://bgm5ndkfxjipm" path="res://scripts/ia.gd" id="3_vcow4"]
 [ext_resource type="Script" uid="uid://c2cuj34uwujk0" path="res://scripts/wander.gd" id="4_tlcuw"]
 [ext_resource type="Texture2D" uid="uid://c1yunoorcpa1u" path="res://icon.svg" id="4_watpk"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6tpek"]
-atlas = ExtResource("1_tvtma")
-region = Rect2(0, 0, 700, 902)
+[sub_resource type="AtlasTexture" id="AtlasTexture_48ox1"]
+atlas = ExtResource("2_watpk")
+region = Rect2(0, 0, 50, 47)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vcow4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6tpek")
+"texture": SubResource("AtlasTexture_48ox1")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[node name="gaia" type="CharacterBody3D"]
+[node name="Miniling1" type="CharacterBody3D"]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 0, 0)
 script = ExtResource("1_6tpek")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 sprite_frames = SubResource("SpriteFrames_vcow4")
+
+[node name="MitosisTimer" type="Timer" parent="."]
+autostart = true
 
 [node name="IA" type="Node" parent="."]
 script = ExtResource("3_vcow4")
@@ -37,6 +42,7 @@ one_shot = true
 
 [node name="Sprite3D" type="Sprite3D" parent="IA/RayCast3D"]
 transform = Transform3D(0.135, 0, 0, 0, 0.135, 0, 0, 0, 0.135, 0, 0, 0)
+visible = false
 billboard = 1
 shaded = true
 no_depth_test = true
@@ -44,7 +50,8 @@ texture = ExtResource("4_watpk")
 
 [node name="Wander" type="Node" parent="IA"]
 script = ExtResource("4_tlcuw")
-speed = 1.0
-wander_range = 5.0
+speed = 0.5
+wander_range = 3.0
 
+[connection signal="timeout" from="MitosisTimer" to="." method="_on_mitosis_timer_timeout"]
 [connection signal="timeout" from="IA/Timer" to="IA" method="_on_timer_timeout"]

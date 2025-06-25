@@ -4,6 +4,7 @@ extends Node
 @onready var agent : CharacterBody3D = $".."
 @onready var timer : Timer = $"Timer"
 @onready var Wander = $"Wander"
+var node_ready = false
 
 var goal_pos : Vector2
 var theta_speed : float
@@ -15,10 +16,11 @@ func _ready():
 
 func _physics_process(delta):
 	if not goal_pos == agent.PT:
-		agent.theta = move_toward(agent.theta, goal_pos.y, theta_speed/1000)
-		agent.phi = move_toward(agent.phi, goal_pos.x, phi_speed/1000)
-	if $RayCast3D.is_colliding():
-		print(4)
+		agent.theta = move_toward(agent.theta, goal_pos.y, (theta_speed/20)*delta)
+		agent.phi = move_toward(agent.phi, goal_pos.x, (phi_speed/20)*delta)
+
+func set_timer(ttimer: Timer, time: float):
+	ttimer.wait_time = time + int(!node_ready)*randf()
 
 func WillCollide(pos : Vector2) -> bool:
 	var r = planet.radius
@@ -30,12 +32,9 @@ func WillCollide(pos : Vector2) -> bool:
 	$RayCast3D.target_position = -goal_diff
 	$RayCast3D.force_raycast_update()
 	$RayCast3D/Sprite3D.position = -goal_diff
-	print("eeee  " + str($RayCast3D.get_collider()))
-	print("eeee  " + str($RayCast3D.is_colliding()))
 	return $RayCast3D.is_colliding()
 
 func doWander():
-	print(1)
 	var can_move := false
 	var temp_goal_pos = agent.PT
 	while not can_move:
@@ -49,7 +48,7 @@ func doWander():
 	else:
 		phi_speed = (abs(agent.phi-goal_pos.x)*Wander.speed/abs(agent.theta-goal_pos.y))
 		theta_speed = Wander.speed
-	timer.wait_time = Wander.speed
+	set_timer(timer, Wander.speed)
 	timer.start()
 	
 func _on_timer_timeout():
