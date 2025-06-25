@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://pr0pn3ayhfhb"]
+[gd_scene load_steps=10 format=3 uid="uid://pr0pn3ayhfhb"]
 
 [ext_resource type="Script" uid="uid://bt0hwx7bq6ab8" path="res://scripts/game.gd" id="1_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://btapksyly6pem" path="res://assets/Mercator-projection.jpg" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://b5sykql048wnj" path="res://scenes/gaia.tscn" id="2_lnu2h"]
 [ext_resource type="Script" uid="uid://dssyog843uy5c" path="res://scripts/camera_3d.gd" id="3_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://d1gwcmhmgbh5b" path="res://scenes/bush_1.tscn" id="5_iywne"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yqjtg"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -33,7 +34,7 @@ shadow_enabled = true
 
 [node name="Planète" type="CSGSphere3D" parent="."]
 transform = Transform3D(-0.999678, 0, 0.0253919, 0, 1, 0, -0.0253919, 0, -0.999678, 0, 0, 0)
-radius = 4.0
+radius = 10.0
 radial_segments = 80
 rings = 80
 material = SubResource("StandardMaterial3D_e2o6t")
@@ -44,6 +45,20 @@ material = SubResource("StandardMaterial3D_e2o6t")
 transform = Transform3D(0.81532, 0, -0.579011, 0, 1, 0, 0.579011, 0, 0.81532, 7.7037, 1.23516, -12.3896)
 depth = 25.455
 polygon = PackedVector2Array(-0.0308684, 2.01396, -0.349819, 1.37634, -0.629719, 1.04448, -0.753966, 0.177502, -0.377105, -0.184114, -0.403605, -0.759945, -1.03531, -1.11158, -1.90828, -1.1506, -2.07685, -2.84797, 0.357905, -5.00589, 2.36345, -3.95312, 2.37561, -3.19748, 1.24767, -2.27962, 0.793263, -1.48594, 2.85643, -0.652071, 3.83452, -0.487343, 3.51837, 0.034968, 1.89253, 1.03947, 1.96953, 1.91759, 1.31593, 1.75279, 0.64266, 2.17229, 0.35644, 1.95378)
+
+[node name="Collisions2" type="StaticBody3D" parent="Planète"]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Planète/Collisions2"]
+transform = Transform3D(0.750342, 0, 0.66105, 0, 1, 0, -0.66105, 0, 0.750342, -6.72865, 5.15395, -8.54621)
+depth = 6.905
+polygon = PackedVector2Array(-1.70202, 0.32937, -2.26082, -0.287071, -2.43858, -0.799876, -1.81889, -0.633969, -1.90038, -0.380777, -1.4309, 0.181103)
+
+[node name="Collisions3" type="StaticBody3D" parent="Planète"]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Planète/Collisions3"]
+transform = Transform3D(0.750342, 0, 0.66105, 0, 1, 0, -0.66105, 0, 0.750342, -6.72865, 5.15395, -8.54621)
+depth = 6.905
+polygon = PackedVector2Array(0.0132692, 0.148343, -0.597285, -0.211675, 0.345256, -0.240591, 0.916407, -0.28686, 1.39713, -0.115487, 0.899642, 0.335433)
 
 [node name="gaia" parent="." instance=ExtResource("2_lnu2h")]
 
@@ -61,5 +76,7 @@ bbcode_enabled = true
 text = "[b]r         : [/b]
 [b]theta : [/b]
 [b]phi     : [/b]"
+
+[node name="Bush1" parent="." instance=ExtResource("5_iywne")]
 
 [editable path="gaia"]

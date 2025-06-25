@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1gwcmhmgbh5b"]
+
+[ext_resource type="Texture2D" uid="uid://eca0vumluh7t" path="res://assets/bush1.png" id="1_ts26i"]
+[ext_resource type="Script" uid="uid://bs4i8045eaww4" path="res://scripts/bush_1.gd" id="2_bb3mb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tyjd"]
+atlas = ExtResource("1_ts26i")
+region = Rect2(0, 0, 330, 236)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bg704"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tyjd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tb34q"]
+size = Vector3(2.67645, 2.09106, 6.31079)
+
+[node name="Bush1" type="StaticBody3D"]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 0, 0)
+script = ExtResource("2_bb3mb")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+sorting_offset = -1.0
+sprite_frames = SubResource("SpriteFrames_bg704")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0350037, 0.0203857, 0)
+visible = false
+shape = SubResource("BoxShape3D_tb34q")
+
+[node name="TimerFruit" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="TimerFruit" to="." method="_on_timer_fruit_timeout"]

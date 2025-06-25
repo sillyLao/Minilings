@@ -11,7 +11,7 @@ var PT : Vector2
 var children_count : float = 0
 
 func _ready():
-	r = planet.radius + 0.01
+	r = planet.radius + 0.002
 	PT = Vector2(phi, theta)
 	get_node("..").minilings_number += 1
 	print(get_node("..").minilings_number)
@@ -35,6 +35,7 @@ func modulo(a: float, n: float) -> float:
 	return a - floor(a/n) * n
 
 func mitosis():
+	$GPUParticles3D.emitting = true
 	var child =	duplicate()
 	child.theta = theta
 	child.phi = phi
